@@ -7,4 +7,3 @@ def runGUI():
     canvas = tk.Canvas(root, height=500, width=500, bg="#263D42")
     canvas.pack()
     root.mainloop()
-# test
