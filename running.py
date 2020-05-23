@@ -5,7 +5,7 @@ import openpyxl
 import matplotlib.pyplot as plt
 import numpy as np
 from datetime import time
-from app import runGUI
+import tkinter as tk
 
 # variable to store spreadsheet location
 loc = "/Users/ishanshah/Documents/Programming/Projects/runkeeper/running.xlsx"
@@ -53,7 +53,7 @@ def calcPace(duration, distance):
     return secsToMin(pace)
 
 def main():
-    runGUI()
+    execfile("app.py")
     # print "\nWelcome to runkeeper.\n"
     # print "You've run " + getDist() + " total miles."
     # print "Your average pace is " + getAvgPace() + " minutes per mile.\n"
