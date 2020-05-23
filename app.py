@@ -3,12 +3,25 @@ from tkinter import *
 from tkmacosx import Button
 import os
 
-# called when submit button is pressed
+# called when submit button is pressed to store data
 def submit():
     print("Date: %s\nDistance: %s\nDuration: %s" % (e1.get(), e2.get(), e3.get()))
     e1.delete(0, tk.END)
     e2.delete(0, tk.END)
     e3.delete(0, tk.END)
+
+# called when entry fields are pressed to clear default text
+def entry_click1(e):
+    e1.delete(0, tk.END)
+    e1.configure(fg = "black")
+
+def entry_click2(e):
+    e2.delete(0, tk.END)
+    e2.configure(fg = "black")
+
+def entry_click3(e):
+    e3.delete(0, tk.END)
+    e3.configure(fg = "black")    
 
 # begin gui
 print "\n\nrunning...\n"
@@ -47,9 +60,21 @@ e1 = tk.Entry(root)
 e2 = tk.Entry(root)
 e3 = tk.Entry(root)
 
+e1.insert(0, "MM/DD/YYYY")
+e2.insert(0, "Number of miles")
+e3.insert(0, "Number of minutes")
+
+e1.configure(fg = "gray")
+e2.configure(fg = "gray")
+e3.configure(fg = "gray")
+
 e1.grid(row=2, column=1)
-e2.grid(row=3, column=1)
+e2.grid(row=3, column=1) 
 e3.grid(row=4, column=1)
+
+e1.bind('<FocusIn>', entry_click1)
+e2.bind('<FocusIn>', entry_click2)
+e3.bind('<FocusIn>', entry_click3)
 
 # submit button
 submit = Button(root, text='Submit', command=submit, borderless=1)
