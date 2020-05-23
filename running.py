@@ -7,8 +7,6 @@ import numpy as np
 from datetime import time
 from app import runGUI
 
-
-
 # variable to store spreadsheet location
 loc = "/Users/ishanshah/Documents/Programming/Projects/runkeeper/running.xlsx"
 
@@ -23,6 +21,7 @@ def getDist():
         sum += sheet.cell(row = i, column = 2).value
     return str(round(sum, 2))
 
+# calculate average pace
 def getAvgPace():
     sum = 0
     ct = 0
@@ -55,7 +54,7 @@ def calcPace(duration, distance):
 
 def main():
     runGUI()
-    print "\nWelcome to runkeeper.\n"
-    print "You've run " + getDist() + " total miles."
-    print "Your average pace is " + getAvgPace() + " minutes per mile.\n"
+    # print "\nWelcome to runkeeper.\n"
+    # print "You've run " + getDist() + " total miles."
+    # print "Your average pace is " + getAvgPace() + " minutes per mile.\n"
 main()
