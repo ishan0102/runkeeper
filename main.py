@@ -1,10 +1,9 @@
 # parses running spreadsheet and does basic analysis
-from running import *
+from data import *
+from app import *
 
-def main():
+if __name__ == "__main__":
     execfile("app.py")
-    print "\nWelcome to runkeeper.\n"
-    print "You've run " + getDist() + " total miles."
-    print "Your average pace is " + getAvgPace() + " minutes per mile.\n"
-
-main()
+    # print "\nWelcome to runkeeper.\n"
+    # print "You've run " + getDist(sheet_main) + " total miles."
+    # print "Your average pace is " + getAvgPace(sheet_main) + " minutes per mile.\n"

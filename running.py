@@ -2,24 +2,31 @@
 
 # import data analysis modules
 import numpy as np
-from excel import *
+from data import *
 
 # calculate distance run
-def getDist():
+def getDist(sheet):
     sum = 0
     for i in range(2, len(sheet['B']) + 1):
         sum += sheet.cell(row = i, column = 2).value
     return str(round(sum, 2))
 
 # calculate average pace
-def getAvgPace():
+def getAvgPace(sheet):
     sum = 0
     ct = 0
     for i in range(2, len(sheet['B']) + 1):
-        sum += minToSecs(calcPace(sheet.cell(row = i, column = 3).value, \
-               sheet.cell(row = i, column = 2).value))
+        sum += minToSecs(calcPace(sheet.cell(row = i, column = 2).value, \
+               sheet.cell(row = i, column = 3).value))
         ct += 1
     return secsToMin(int(sum / ct))
+
+# calculate pace given distance and duration
+# uses minToSec() and secToMin() to do division with time
+def calcPace(distance, duration):
+    secs = minToSecs(duration)
+    pace = int(secs / float(distance))
+    return secsToMin(pace)
 
 # convert minutes to seconds
 def minToSecs(time):
@@ -31,13 +38,6 @@ def minToSecs(time):
 
 # convert seconds to minutes
 def secsToMin(secs):
-    mins = secs / 60
+    mins = int(secs) / 60
     secs = secs % 60
     return str(mins) + ":" + str(secs)
-    
-# calculate pace given distance and duration
-# uses minToSec() and secToMin() to do division with time
-def calcPace(duration, distance):
-    secs = minToSecs(duration)
-    pace = int(secs / distance)
-    return secsToMin(pace)
