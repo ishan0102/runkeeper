@@ -1,7 +1,5 @@
 import tkinter as tk
-from tkinter import *
 from tkmacosx import Button
-import os
 
 # called when submit button is pressed to store data
 def submit():
@@ -62,11 +60,11 @@ e3 = tk.Entry(root)
 
 e1.insert(0, "MM/DD/YYYY")
 e2.insert(0, "Number of miles")
-e3.insert(0, "Number of minutes")
+e3.insert(0, "MM:SS")
 
-e1.configure(fg = "gray")
-e2.configure(fg = "gray")
-e3.configure(fg = "gray")
+e1.configure(fg = "#808080")
+e2.configure(fg = "#808080")
+e3.configure(fg = "#808080")
 
 e1.grid(row=2, column=1)
 e2.grid(row=3, column=1) 

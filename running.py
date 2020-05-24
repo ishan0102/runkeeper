@@ -1,18 +1,8 @@
-# parses running spreadsheet and does basic analysis
+# this module contains the functions that perform running calculations
 
 # import data analysis modules
-import openpyxl
-import matplotlib.pyplot as plt
 import numpy as np
-from datetime import time
-import tkinter as tk
-
-# variable to store spreadsheet location
-loc = "/Users/ishanshah/Documents/Programming/Projects/runkeeper/running.xlsx"
-
-# open excel spreadsheet
-workbook = openpyxl.load_workbook(loc)
-sheet = workbook["main"]
+from excel import *
 
 # calculate distance run
 def getDist():
@@ -51,10 +41,3 @@ def calcPace(duration, distance):
     secs = minToSecs(duration)
     pace = int(secs / distance)
     return secsToMin(pace)
-
-def main():
-    execfile("app.py")
-    # print "\nWelcome to runkeeper.\n"
-    # print "You've run " + getDist() + " total miles."
-    # print "Your average pace is " + getAvgPace() + " minutes per mile.\n"
-main()
