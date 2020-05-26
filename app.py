@@ -4,40 +4,47 @@ from data import *
 
 # called when submit button is pressed to store data
 def submit():
-    # global date, distance, duration
     date = e1.get()
     distance = e2.get()
     duration = e3.get()
     e1.delete(0, tk.END)
     e2.delete(0, tk.END)
     e3.delete(0, tk.END)
-    inputData(date, distance, duration, sheet_test)
-    print "Entry recorded\n"
+
+    try:
+        status.configure(text="Entry recorded")
+        inputData(date, distance, duration, sheet_test)
+    except Exception:
+        status.configure(text="Please format inputs\nas specified :^)")
 
 # called when entry fields are pressed to clear default text
 def entry_click1(e):
+    status.configure(text="Enter date in MM/DD/YYYY\nEx. 05/26/2020")
     e1.delete(0, tk.END)
     e1.configure(fg = "black")
 
 def entry_click2(e):
+    status.configure(text="Enter distance in miles\nEx. 1.58")
     e2.delete(0, tk.END)
     e2.configure(fg = "black")
 
 def entry_click3(e):
+    status.configure(text="Enter duration in HH:MM:SS\nEx. 24:38")
     e3.delete(0, tk.END)
-    e3.configure(fg = "black")    
+    e3.configure(fg = "black")
 
 def app():
     # begin gui
-    print "\n\nrunning...\n"
+    global root
     root = tk.Tk()
+    print "\n\nrunning...\n"
 
     # root window
     root.title("Runkeeper")
-    root.geometry("300x240+1200+300")
+    root.geometry("300x260+1300+300")
     root.configure(bg = "#2c6b6f")
 
-    # greetings
+    # greeting labels
     greeting1 = tk.Label(root, text="Welcome to Runkeeper!")
     greeting1.configure(bg = "#2c6b6f", fg = "white", font = ("Open Sans", 18), pady=16)
     greeting1.grid(row=0, column=1, sticky=tk.N)
@@ -46,11 +53,14 @@ def app():
     greeting2.configure(bg = "#2c6b6f", fg = "white", font = ("Open Sans", 14), pady=4)
     greeting2.grid(row=1, column=1)
 
-    # labels
+    # # status label
+    global status
+    status = tk.Label(root)
+    status.configure(bg = "#2c6b6f", fg = "white", font = ("Open Sans", 14), pady=4)
+    status.grid(row=6, column=1)
+
+    # item labels
     labels = [tk.Label(root, text="Date"), tk.Label(root, text="Distance"), tk.Label(root, text="Duration")]
-    # l1 = tk.Label(root, text="Date")
-    # l2 = tk.Label(root, text="Distance")
-    # l3 = tk.Label(root, text="Duration")
 
     labels[0].grid(row=2)
     labels[1].grid(row=3)
@@ -66,9 +76,9 @@ def app():
     e2 = tk.Entry(root)
     e3 = tk.Entry(root)
 
-    e1.insert(0, "MM/DD/YYYY")
-    e2.insert(0, "Number of miles")
-    e3.insert(0, "MM:SS")
+    e1.insert(0, "10/21/2021")
+    e2.insert(0, "3.52")
+    e3.insert(0, "01:22:17")
 
     e1.configure(fg = "#808080")
     e2.configure(fg = "#808080")
