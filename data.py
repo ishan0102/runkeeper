@@ -13,7 +13,7 @@ sheet_main = workbook["main"]
 sheet_test = workbook["test"]
 
 def inputData(date, distance, duration, sheet):
-    currentRow = findEmpty(sheet_test)
+    currentRow = findEmpty(sheet_main)
     cell1 = sheet.cell(row = currentRow, column = 1)
     cell2 = sheet.cell(row = currentRow, column = 2)
     cell3 = sheet.cell(row = currentRow, column = 3)
