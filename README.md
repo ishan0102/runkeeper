@@ -10,3 +10,7 @@ I've been working on this simple GUI app to track my running and do basic data a
 - graphing data using *matplotlib*
 - adding support for walking and cycling
 - download data directly from the Runkeeper API instead of using a GUI
+
+### GUI
+Here is an image of the graphical user interface of Runkeeper:
+![Runkeeper GUI](/gui.jpg)

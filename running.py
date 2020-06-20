@@ -2,13 +2,17 @@
 
 # import data analysis modules
 import numpy as np
+import time
 from data import *
 
 # calculate distance run
 def getDist(sheet):
     sum = 0
     for i in range(2, len(sheet['B']) + 1):
-        sum += sheet.cell(row = i, column = 2).value
+        try:
+            sum += float(sheet.cell(row = i, column = 2).value)
+        except:
+            continue
     return str(round(sum, 2))
 
 # calculate average pace
@@ -16,9 +20,12 @@ def getAvgPace(sheet):
     sum = 0
     ct = 0
     for i in range(2, len(sheet['B']) + 1):
-        sum += minToSecs(calcPace(sheet.cell(row = i, column = 2).value, \
+        try:
+            sum += minToSecs(calcPace(sheet.cell(row = i, column = 2).value, \
                sheet.cell(row = i, column = 3).value))
-        ct += 1
+            ct += 1
+        except:
+            continue
     return secsToMin(int(sum / ct))
 
 # calculate pace given distance and duration
@@ -34,10 +41,21 @@ def minToSecs(time):
     colon = time.index(":")
     mins = time[:colon]
     secs = time[colon + 1:]
-    return int(mins) * 60 + int(secs)
+    return int(float(mins)) * 60 + int(float(secs))
 
 # convert seconds to minutes
 def secsToMin(secs):
-    mins = int(secs) / 60
+    mins = int(secs) // 60
     secs = secs % 60
     return str(mins) + ":" + str(secs)
+
+def getTotalTime(sheet):
+    sum = 0
+    ct = 0
+    for i in range(2, len(sheet['B']) + 1):
+        try:
+            sum += minToSecs(sheet.cell(row = i, column = 3).value)
+            ct += 1
+        except:
+            continue
+    return time.strftime('%H:%M:%S', time.gmtime(sum))

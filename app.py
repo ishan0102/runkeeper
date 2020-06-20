@@ -13,22 +13,25 @@ def submit():
     e3.delete(0, tk.END)
 
     try:
-        status.configure(text = "Entry recorded successfully")
         inputData(date, distance, duration, sheet_main)
-    except Exception:
+    except:
         status.configure(text = "Please format inputs\nas specified :^)")
+    else:
+        workbook.save("running.xlsx")
+        status.configure(text = "Entry recorded successfully!")
+
 
 # called when total distance button is pressed
 def grab_dist():
-    return None
+    stats_text.configure(text = grab_dist_text())
 
 # called when average pace button is pressed
 def grab_avgpace():
-    return None
+    stats_text.configure(text = grab_avgpace_text())
 
 # called when total time button is pressed
 def grab_totaltime():
-    return None
+    stats_text.configure(text = grab_totaltime_text())
 
 # called when entry fields are pressed to clear default text
 def entry_click1(e):
@@ -53,7 +56,7 @@ def app():
 
     # root window
     root.title("Runkeeper")
-    root.geometry("520x280+1300+300")
+    root.geometry("530x300+1300+290")
     root.configure(bg = "#2c6b6f")
 
     # greeting labels
@@ -65,7 +68,7 @@ def app():
     greeting2.configure(bg = "#2c6b6f", fg = "white", font = ("Open Sans", 14), pady = 4)
     greeting2.grid(row = 1, column = 1)
 
-    greeting3 = tk.Label(root, text="See Running Stats")
+    greeting3 = tk.Label(root, text="See Running Statistics")
     greeting3.configure(bg = "#2c6b6f", fg = "white", font = ("Open Sans", 18), pady = 16)
     greeting3.grid(row = 0, column = 3, sticky = tk.N)
 
@@ -138,10 +141,14 @@ def app():
     submitButton.grid(row = 4, column = 3)
 
     # data analysis text
+    stats_greeting = tk.Label(root, text="Stats:")
+    stats_greeting.configure(bg = "#2c6b6f", fg = "white", font = ("Open Sans", 14))
+    stats_greeting.grid(row = 5, column = 3, pady = 8)
+
     global stats_text
-    stats_text = tk.Label(root, text="Press a button to view \nyour running statistics")
+    stats_text = tk.Label(root, text="Press a button to view \nyour running statistics.")
     stats_text.configure(bg = "#2c6b6f", fg = "white", font = ("Open Sans", 14))
-    stats_text.grid(row = 5, column = 3)
+    stats_text.grid(row = 6, column = 3, pady = 8)
 
     # keep running until window closed
     root.mainloop() # keep running until window closed

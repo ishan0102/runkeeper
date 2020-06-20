@@ -30,10 +30,22 @@ def inputData(date, distance, duration, sheet):
     cell4.alignment = Alignment(horizontal='right')
 
     # save workbook
-    workbook.save("running.xlsx")
+    # workbook.save("running.xlsx")
 
 def findEmpty(sheet):
     i = 1
     while (sheet.cell(row = i, column = 1).value != None):
         i += 1
     return i
+
+# called when total distance button is pressed
+def grab_dist_text():
+    return "You have run a total of\n" + getDist(sheet_main) + " miles so far. \nKeep it up!"
+
+# called when average pace button is pressed
+def grab_avgpace_text():
+    return "Your average pace is\n" + getAvgPace(sheet_main) + " minutes per mile. \nAwesome work!"
+
+# called when total time button is pressed
+def grab_totaltime_text():
+    return "Your total time\nspent running is\n" + getTotalTime(sheet_main) + ". Solid!"
