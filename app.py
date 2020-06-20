@@ -18,6 +18,18 @@ def submit():
     except Exception:
         status.configure(text = "Please format inputs\nas specified :^)")
 
+# called when total distance button is pressed
+def grab_dist():
+    return None
+
+# called when average pace button is pressed
+def grab_avgpace():
+    return None
+
+# called when total time button is pressed
+def grab_totaltime():
+    return None
+
 # called when entry fields are pressed to clear default text
 def entry_click1(e):
     e1.delete(0, tk.END)
@@ -41,11 +53,11 @@ def app():
 
     # root window
     root.title("Runkeeper")
-    root.geometry("300x260+1300+300")
+    root.geometry("520x280+1300+300")
     root.configure(bg = "#2c6b6f")
 
     # greeting labels
-    greeting1 = tk.Label(root, text="Welcome to Runkeeper!")
+    greeting1 = tk.Label(root, text="Add Data")
     greeting1.configure(bg = "#2c6b6f", fg = "white", font = ("Open Sans", 18), pady = 16)
     greeting1.grid(row = 0, column = 1, sticky = tk.N)
 
@@ -53,9 +65,22 @@ def app():
     greeting2.configure(bg = "#2c6b6f", fg = "white", font = ("Open Sans", 14), pady = 4)
     greeting2.grid(row = 1, column = 1)
 
+    greeting3 = tk.Label(root, text="See Running Stats")
+    greeting3.configure(bg = "#2c6b6f", fg = "white", font = ("Open Sans", 18), pady = 16)
+    greeting3.grid(row = 0, column = 3, sticky = tk.N)
+
+    greeting2 = tk.Label(root, text="Analysis options:")
+    greeting2.configure(bg = "#2c6b6f", fg = "white", font = ("Open Sans", 14), pady = 4)
+    greeting2.grid(row = 1, column = 3)
+
+    # spacer
+    blank1 = tk.Label(root, text="space")
+    blank1.configure(bg = "#2c6b6f", fg = "#2c6b6f")
+    blank1.grid(row=0, column=2)
+
     # status label
     global status
-    status = tk.Label(root)
+    status = tk.Label(root, text="Welcome to Runkeeper!")
     status.configure(bg = "#2c6b6f", fg = "white", font = ("Open Sans", 14), pady = 4)
     status.grid(row = 6, column = 1)
 
@@ -96,6 +121,27 @@ def app():
     submitButton = Button(root, text='Submit', command = submit, borderless = 1)
     submitButton.configure(pady = 4, bg = "white", fg = "black", font = ("Open Sans", 14))
     submitButton.grid(row = 5, column = 1, pady = 4)
+
+    # total distance button
+    submitButton = Button(root, text='Total Distance', command = grab_dist, borderless = 1)
+    submitButton.configure(pady = 4, bg = "white", fg = "black", font = ("Open Sans", 14))
+    submitButton.grid(row = 2, column = 3)
+
+    # average pace button
+    submitButton = Button(root, text='Average Pace', command = grab_avgpace, borderless = 1)
+    submitButton.configure(pady = 4, bg = "white", fg = "black", font = ("Open Sans", 14))
+    submitButton.grid(row = 3, column = 3)
+
+    # total time button
+    submitButton = Button(root, text='Total Time', command = grab_totaltime, borderless = 1)
+    submitButton.configure(pady = 4, bg = "white", fg = "black", font = ("Open Sans", 14))
+    submitButton.grid(row = 4, column = 3)
+
+    # data analysis text
+    global stats_text
+    stats_text = tk.Label(root, text="Press a button to view \nyour running statistics")
+    stats_text.configure(bg = "#2c6b6f", fg = "white", font = ("Open Sans", 14))
+    stats_text.grid(row = 5, column = 3)
 
     # keep running until window closed
     root.mainloop() # keep running until window closed
