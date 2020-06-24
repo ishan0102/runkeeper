@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import ttk
 from tkmacosx import Button
 import time
 from data import *
@@ -47,7 +48,7 @@ def entry_click2(e):
 def entry_click3(e):
     e3.delete(0, tk.END)
     e3.configure(fg = "black")
-    status.configure(text = "Enter duration in HH:MM:SS\nEx. 24:38")
+    status.configure(text = "Enter duration in MM:SS\nEx. 24:38")
 
 def app():
     # begin gui
@@ -106,7 +107,7 @@ def app():
 
     e1.insert(0, "10/21/21")
     e2.insert(0, "3.52")
-    e3.insert(0, "01:22:17")
+    e3.insert(0, "22:17")
 
     e1.configure(fg = "#808080")
     e2.configure(fg = "#808080")
