@@ -47,8 +47,11 @@ def minToSecs(time):
 def secsToMin(secs):
     mins = int(secs) // 60
     secs = secs % 60
+    if secs < 10:
+        secs = "0" + str(secs)
     return str(mins) + ":" + str(secs)
 
+# calculate total time spent running
 def getTotalTime(sheet):
     sum = 0
     ct = 0

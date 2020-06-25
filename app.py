@@ -13,14 +13,13 @@ def submit():
     e2.delete(0, tk.END)
     e3.delete(0, tk.END)
 
-    try:
-        inputData(date, distance, duration, sheet_main)
-    except:
+    print("\n")
+    if not screenData(date, distance, duration):
         status.configure(text = "Please format inputs\nas specified :^)")
     else:
+        inputData(date, distance, duration, sheet)
         workbook.save("running.xlsx")
         status.configure(text = "Entry recorded successfully!")
-
 
 # called when total distance button is pressed
 def grab_dist():
